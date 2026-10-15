@@ -64,7 +64,7 @@ function OrderRow({ row }: { row: ReviewRow }) {
               <tr key={f.key} style={{ background: f.flags.length > 0 ? FLAGGED_BG : undefined, borderTop: "1px solid #eee" }}>
                 <td style={{ padding: "4px 6px" }}>{f.key}</td>
                 <td style={{ padding: "4px 6px" }}>{f.value}</td>
-                <td style={{ padding: "4px 6px" }}>{f.sourceQuote && <q>{f.sourceQuote}</q>}</td>
+                <td style={{ padding: "4px 6px" }}>{f.sourceQuote ? <q>{f.sourceQuote}</q> : f.value && <em style={{ color: "#b00020" }}>no source quote</em>}</td>
                 <td style={{ padding: "4px 6px" }}>
                   {f.flags.map((flag, i) => (
                     <div key={i}>
