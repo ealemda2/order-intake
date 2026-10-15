@@ -1,5 +1,6 @@
 import type { IntakeDocument, PipelineResult } from "../contract";
 import { extract } from "./extract";
+import { ground } from "./ground";
 import { anthropicClient, type ModelClient } from "./model";
 import { PROMPT_VERSION } from "./prompts";
 
@@ -13,7 +14,7 @@ let defaultClient: ModelClient | undefined;
 /**
  * The pipeline seam: one document in, one PipelineResult out.
  * The eval suite (`pnpm eval`) calls exactly this function, so keep it the only public entry point.
- * Stages: classify + extract (one model call). Grounding and validators come next (see PLAN.md).
+ * Stages: classify + extract (one model call) -> grounding check. Validators come next (see PLAN.md).
  */
 export async function runPipeline(doc: IntakeDocument, deps: PipelineDeps = {}): Promise<PipelineResult> {
   const client = deps.client ?? (defaultClient ??= anthropicClient());
@@ -22,7 +23,7 @@ export async function runPipeline(doc: IntakeDocument, deps: PipelineDeps = {}):
   return {
     docId: doc.id,
     orderType,
-    fields,
+    fields: ground(doc.text, fields),
     meta: {
       model: client.model,
       promptVersion: PROMPT_VERSION,

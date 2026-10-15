@@ -22,4 +22,21 @@ describe("runPipeline", () => {
     expect(result.meta.promptVersion).toBe(PROMPT_VERSION);
     expect(result.meta.latencyMs).toBeGreaterThanOrEqual(0);
   });
+
+  it("flags an extracted field whose source quote is not in the document", async () => {
+    const order = { id: "lab", text: "LABORATORY ORDER\nPatient: Mara Ellison\nNPI: 1928374655" };
+    const extraction = {
+      orderType: "lab",
+      fields: {
+        ...abstainAll.fields,
+        patientName: { value: "Mara Ellison", sourceQuote: "Mara Ellison" },
+        providerNpi: { value: "1928374656", sourceQuote: "NPI: 1928374656" },
+      },
+    };
+
+    const result = await runPipeline(order, { client: fakeClient(extraction) });
+
+    expect(result.fields.patientName.flags).toEqual([]);
+    expect(result.fields.providerNpi.flags.map((f) => f.code)).toEqual(["ungrounded"]);
+  });
 });
