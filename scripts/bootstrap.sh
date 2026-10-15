@@ -89,4 +89,4 @@ else
 fi
 
 say "done: https://github.com/$REPO"
-echo "next: open KICKOFF.md"
+echo "next: see README.md"
