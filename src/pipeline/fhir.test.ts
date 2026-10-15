@@ -29,7 +29,7 @@ function resource<T extends FhirResource["resourceType"]>(bundle: Bundle, type: 
 }
 
 describe("toDraftBundle: golden order 01 (lab, every field stated)", () => {
-  const bundle = toDraftBundle(goldenResult("01-lab-cmp"), { recorded: RECORDED });
+  const bundle = toDraftBundle(goldenResult("01-lab-cmp"), RECORDED);
 
   it("is a collection bundle", () => {
     expect(bundle.resourceType).toBe("Bundle");
@@ -81,7 +81,7 @@ describe("toDraftBundle: golden order 01 (lab, every field stated)", () => {
 });
 
 describe("toDraftBundle: golden order 10 (referral, self-pay, no procedure code)", () => {
-  const bundle = toDraftBundle(goldenResult("10-referral-sleep-fax"), { recorded: RECORDED });
+  const bundle = toDraftBundle(goldenResult("10-referral-sleep-fax"), RECORDED);
 
   it("omits the ServiceRequest code because the order code abstained", () => {
     const request = resource(bundle, "ServiceRequest");
@@ -105,7 +105,7 @@ describe("toDraftBundle: abstained fields are never invented", () => {
     const result = goldenResult("01-lab-cmp");
     result.fields.providerName = emptyField();
     result.fields.providerNpi = emptyField();
-    const bundle = toDraftBundle(result, { recorded: RECORDED });
+    const bundle = toDraftBundle(result, RECORDED);
     expect(resource(bundle, "Practitioner")).toBeUndefined();
     expect(resource(bundle, "ServiceRequest")).not.toHaveProperty("requester");
   });
@@ -113,7 +113,7 @@ describe("toDraftBundle: abstained fields are never invented", () => {
 
 describe("toDraftBundle: order code system", () => {
   it("codes a HCPCS Level II order (golden order 07, walker) with the HCPCS system", () => {
-    const bundle = toDraftBundle(goldenResult("07-dme-walker"), { recorded: RECORDED });
+    const bundle = toDraftBundle(goldenResult("07-dme-walker"), RECORDED);
     expect(resource(bundle, "ServiceRequest")?.code).toEqual({
       coding: [{ system: "urn:oid:2.16.840.1.113883.6.285", code: "E0143" }],
     });
@@ -122,7 +122,7 @@ describe("toDraftBundle: order code system", () => {
   it("keeps a code that is neither CPT- nor HCPCS-shaped as text, without guessing a system", () => {
     const result = goldenResult("01-lab-cmp");
     result.fields.orderCode = { value: "8OO53", sourceQuote: "8OO53", flags: [] };
-    const bundle = toDraftBundle(result, { recorded: RECORDED });
+    const bundle = toDraftBundle(result, RECORDED);
     expect(resource(bundle, "ServiceRequest")?.code).toEqual({ text: "8OO53" });
   });
 });
@@ -142,7 +142,7 @@ describe("toDraftBundle: flags travel as extensions", () => {
   it("puts a flag on a primitive element's extension (birth date)", () => {
     const result = goldenResult("01-lab-cmp");
     result.fields.patientDob.flags = [ungrounded];
-    const patient = resource(toDraftBundle(result, { recorded: RECORDED }), "Patient");
+    const patient = resource(toDraftBundle(result, RECORDED), "Patient");
     expect(patient?.birthDate).toBe("1961-04-12");
     expect(patient?._birthDate).toEqual({ extension: [flagExtension("patientDob")] });
   });
@@ -160,20 +160,28 @@ describe("toDraftBundle: flags travel as extensions", () => {
   it.each(Object.keys(elementOf) as (keyof typeof elementOf)[])("puts a %s flag on its element", (key) => {
     const result = goldenResult("01-lab-cmp");
     result.fields[key].flags = [ungrounded];
-    const element = elementOf[key](toDraftBundle(result, { recorded: RECORDED }));
+    const element = elementOf[key](toDraftBundle(result, RECORDED));
     expect(element?.extension).toEqual([flagExtension(key)]);
   });
 
   it("keeps a flag on an abstained field by putting it on the ServiceRequest", () => {
     const result = goldenResult("10-referral-sleep-fax");
     result.fields.orderCode.flags = [ungrounded];
-    const request = resource(toDraftBundle(result, { recorded: RECORDED }), "ServiceRequest");
+    const request = resource(toDraftBundle(result, RECORDED), "ServiceRequest");
     expect(request).not.toHaveProperty("code");
     expect(request?.extension).toEqual([flagExtension("orderCode")]);
   });
 
   it("adds no extensions to an order with no flags", () => {
-    const bundle = toDraftBundle(goldenResult("01-lab-cmp"), { recorded: RECORDED });
+    const bundle = toDraftBundle(goldenResult("01-lab-cmp"), RECORDED);
     expect(JSON.stringify(bundle)).not.toContain("extension");
+  });
+});
+
+describe("toDraftBundle: not-an-order (golden order 14, fax cover sheet)", () => {
+  it("drafts no resources, because a not-an-order is archived with no extraction", () => {
+    const bundle = toDraftBundle(goldenResult("14-not-order-fax-cover"), RECORDED);
+    expect(bundle.type).toBe("collection");
+    expect(bundle.entry).toEqual([]);
   });
 });
