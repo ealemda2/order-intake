@@ -29,7 +29,7 @@ tmux select-pane -t "$SESSION:0.1" -T "B  #$B  $(basename "$DB")"
 tmux split-window -v -t "$SESSION:0.1" -c "$ROOT" -l 35%
 tmux select-pane -t "$SESSION:0.2" -T "status"
 tmux send-keys -t "$SESSION:0.2" \
-  "while true; do clear; git worktree list; echo; gh pr list --limit 5 2>/dev/null; echo; gh run list --limit 5 2>/dev/null; sleep 15; done" C-m
+  "export GH_PAGER=cat; while true; do clear; git worktree list; echo; gh pr list --limit 5 2>/dev/null; echo; gh run list --limit 5 2>/dev/null; sleep 15; done" C-m
 # Agents are typed by you, not auto-started, so the audience sees the prompt go in:
 tmux send-keys -t "$SESSION:0.0" "claude" C-m
 tmux send-keys -t "$SESSION:0.1" "claude" C-m
