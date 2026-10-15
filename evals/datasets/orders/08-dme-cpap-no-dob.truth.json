@@ -1,0 +1,16 @@
+{
+  "docId": "08-dme-cpap-no-dob",
+  "orderType": "dme",
+  "fields": {
+    "patientName": "Samuel Osei",
+    "patientDob": null,
+    "memberId": "AET-60228471",
+    "providerName": "Priya Raman",
+    "providerNpi": "1765432103",
+    "icd10": "G47.33",
+    "orderCode": "E0601",
+    "orderDate": "2026-03-02"
+  },
+  "expectedFlags": [],
+  "notes": "DOB blank. Regression trap."
+}

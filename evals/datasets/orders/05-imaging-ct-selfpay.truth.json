@@ -1,0 +1,16 @@
+{
+  "docId": "05-imaging-ct-selfpay",
+  "orderType": "imaging",
+  "fields": {
+    "patientName": "Ana Lucia Ferreira",
+    "patientDob": "1985-02-19",
+    "memberId": null,
+    "providerName": "Priya Raman",
+    "providerNpi": "1765432103",
+    "icd10": "R91.1",
+    "orderCode": "71250",
+    "orderDate": "2026-03-05"
+  },
+  "expectedFlags": [],
+  "notes": "Self-pay: no member ID. memberId must abstain."
+}

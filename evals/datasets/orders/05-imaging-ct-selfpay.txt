@@ -1,0 +1,9 @@
+NORTHGATE PULMONARY ASSOCIATES            IMAGING ORDER
+-----------------------------------------------------------------------
+| PATIENT     | Ana Lucia Ferreira         | DOB     | 02/19/1985 |
+| MEMBER ID   | SELF-PAY                   | SEX     |            |
+| PROVIDER    | Priya Raman, MD            | NPI     | 1765432103 |
+| ORDER       | 71250 CT chest without contrast
+| DX (ICD-10) | R91.1 Solitary pulmonary nodule
+| DATE        | 03/05/2026                 | URGENCY | Routine    |
+-----------------------------------------------------------------------

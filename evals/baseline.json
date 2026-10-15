@@ -1,0 +1,21 @@
+{
+  "metrics": {
+    "docs": 15,
+    "schemaValidity": 1,
+    "classificationAccuracy": 0,
+    "fieldAccuracy": 0,
+    "abstention": 1,
+    "groundingRate": 1,
+    "silentErrors": 0,
+    "silentErrorRate": 0,
+    "invalidCatchRate": 0,
+    "reviewLoad": 0,
+    "meanLatencyMs": 0
+  },
+  "acceptedAt": "2026-10-15T12:30:32.147Z",
+  "acceptedBy": "scaffold",
+  "gitSha": null,
+  "model": null,
+  "promptVersion": null,
+  "reason": "Scaffold stub (abstains on everything). Replace after the first real extraction run."
+}

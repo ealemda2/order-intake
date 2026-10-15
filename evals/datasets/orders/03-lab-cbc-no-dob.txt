@@ -1,0 +1,19 @@
+FAX  03/14/2026 09:12  FROM: 5550104411  TO: CENTRAL INTAKE  P.01/01
+
+BOSPHORUS FAMILY MEDICINE
+1450 Harbor View Rd, Suite 200  |  Tel (555) 010-4410  |  Fax (555) 010-4411
+
+LABORATORY ORDER                                   Priority: Routine
+
+Patient: Grace Okonkwo
+DOB: ____________          Last office visit: 02/26/2026
+Insurance: on file          Member ID: UHC9930217
+
+Ordering provider: Tomas Lindqvist, NP     NPI: 1389057245
+
+Ordered:
+  85025  CBC with automated differential
+Diagnosis: R53.83  Other fatigue
+
+Date of order: 03/13/2026
+Signature: Tomas Lindqvist, NP (electronically signed)

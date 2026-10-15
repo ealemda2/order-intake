@@ -1,0 +1,48 @@
+name: release
+
+# Prod = a tagged GitHub Release carrying the eval evidence it was graded with.
+# The `prod` environment has a required reviewer, so a human approves every release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck && pnpm test
+      - run: pnpm eval
+      - run: pnpm build:web
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: |
+            .eval/report.md
+            web/dist/
+          include-hidden-files: true
+
+  release:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: release, path: out }
+      - name: publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          (cd out/web/dist && zip -qr ../../../review-ui.zip .)
+          gh release create "${{ github.ref_name }}" review-ui.zip \
+            --title "${{ github.ref_name }}" --notes-file out/.eval/report.md

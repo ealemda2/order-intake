@@ -1,0 +1,18 @@
+{
+  "docId": "06-imaging-mri-bad-npi",
+  "orderType": "imaging",
+  "fields": {
+    "patientName": "Kenji Watanabe",
+    "patientDob": "1970-09-30",
+    "memberId": "CIG-7781203",
+    "providerName": "Hannah Weiss",
+    "providerNpi": "1672940837",
+    "icd10": "M54.50",
+    "orderCode": "72148",
+    "orderDate": "2026-03-09"
+  },
+  "expectedFlags": [
+    "providerNpi"
+  ],
+  "notes": "NPI fails the check digit."
+}

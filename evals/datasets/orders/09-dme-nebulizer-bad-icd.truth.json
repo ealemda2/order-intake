@@ -1,0 +1,18 @@
+{
+  "docId": "09-dme-nebulizer-bad-icd",
+  "orderType": "dme",
+  "fields": {
+    "patientName": "Ilse Vermeulen",
+    "patientDob": "1963-05-21",
+    "memberId": "BCX559201774",
+    "providerName": "Tomas Lindqvist",
+    "providerNpi": "1389057245",
+    "icd10": "J4590.9",
+    "orderCode": "E0570",
+    "orderDate": "2026-03-06"
+  },
+  "expectedFlags": [
+    "icd10"
+  ],
+  "notes": "ICD-10 dot misplaced (meant J45.909). Must be copied verbatim and flagged, not silently corrected."
+}

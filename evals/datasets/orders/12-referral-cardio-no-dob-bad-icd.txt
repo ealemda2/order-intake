@@ -1,0 +1,16 @@
+BOSPHORUS FAMILY MEDICINE
+1450 Harbor View Rd, Suite 200  |  Tel (555) 010-4410  |  Fax (555) 010-4411
+
+REFERRAL                                   Priority: Routine
+
+Patient: Elena Petrova
+DOB: ____________          Last office visit: 02/25/2026
+Insurance: on file          Member ID: HUM-41120983
+
+Ordering provider: Selin Aydin, MD     NPI: 1928374655
+
+Referral: Referral to Cardiology, evaluate chest pain
+Diagnosis: R0.79  Chest pain, unspecified
+
+Date of order: 03/12/2026
+Signature: Selin Aydin, MD (electronically signed)

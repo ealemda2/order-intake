@@ -1,0 +1,15 @@
+{
+  "docId": "01-lab-cmp",
+  "orderType": "lab",
+  "fields": {
+    "patientName": "Mara Ellison",
+    "patientDob": "1961-04-12",
+    "memberId": "BCX448812093",
+    "providerName": "Selin Aydin",
+    "providerNpi": "1928374655",
+    "icd10": "E11.9",
+    "orderCode": "80053",
+    "orderDate": "2026-03-13"
+  },
+  "expectedFlags": []
+}

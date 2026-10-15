@@ -1,0 +1,16 @@
+{
+  "docId": "14-not-order-fax-cover",
+  "orderType": "not_order",
+  "fields": {
+    "patientName": null,
+    "patientDob": null,
+    "memberId": null,
+    "providerName": null,
+    "providerNpi": null,
+    "icd10": null,
+    "orderCode": null,
+    "orderDate": null
+  },
+  "expectedFlags": [],
+  "notes": "Records-request cover sheet that mentions a patient and DOB. Not an order: every field must abstain."
+}

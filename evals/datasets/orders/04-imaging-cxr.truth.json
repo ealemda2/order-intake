@@ -1,0 +1,15 @@
+{
+  "docId": "04-imaging-cxr",
+  "orderType": "imaging",
+  "fields": {
+    "patientName": "Walter Brandt",
+    "patientDob": "1949-07-28",
+    "memberId": "4HJ7-PQ2-WX81",
+    "providerName": "Selin Aydin",
+    "providerNpi": "1928374655",
+    "icd10": "R05.9",
+    "orderCode": "71046",
+    "orderDate": "2026-03-11"
+  },
+  "expectedFlags": []
+}

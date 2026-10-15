@@ -1,0 +1,9 @@
+{
+  "schemaValidity": { "min": 1 },
+  "silentErrors": { "max": 0 },
+  "classificationAccuracy": { "maxDrop": 0.07 },
+  "fieldAccuracy": { "maxDrop": 0.03 },
+  "abstention": { "maxDrop": 0.03 },
+  "groundingRate": { "maxDrop": 0.02 },
+  "invalidCatchRate": { "maxDrop": 0 }
+}

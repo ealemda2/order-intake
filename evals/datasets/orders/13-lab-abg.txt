@@ -1,0 +1,9 @@
+NORTHGATE PULMONARY ASSOCIATES            LABORATORY ORDER
+-----------------------------------------------------------------------
+| PATIENT     | Theo Marchetti             | DOB     | 03/17/1975 |
+| MEMBER ID   | UHC7712093                 | SEX     |            |
+| PROVIDER    | Priya Raman, MD            | NPI     | 1765432103 |
+| ORDER       | 82803 Blood gases, arterial
+| DX (ICD-10) | J44.9 Chronic obstructive pulmonary disease, unspecified
+| DATE        | 03/03/2026                 | URGENCY | Routine    |
+-----------------------------------------------------------------------

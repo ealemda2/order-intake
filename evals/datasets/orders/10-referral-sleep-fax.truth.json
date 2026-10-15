@@ -1,0 +1,16 @@
+{
+  "docId": "10-referral-sleep-fax",
+  "orderType": "referral",
+  "fields": {
+    "patientName": "Marcus Hale",
+    "patientDob": "1982-08-14",
+    "memberId": null,
+    "providerName": "Priya Raman",
+    "providerNpi": "1765432103",
+    "icd10": "R06.02",
+    "orderCode": null,
+    "orderDate": "2026-03-04"
+  },
+  "expectedFlags": [],
+  "notes": "Referral: no procedure code, orderCode must abstain."
+}

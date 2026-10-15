@@ -1,0 +1,16 @@
+{
+  "docId": "03-lab-cbc-no-dob",
+  "orderType": "lab",
+  "fields": {
+    "patientName": "Grace Okonkwo",
+    "patientDob": null,
+    "memberId": "UHC9930217",
+    "providerName": "Tomas Lindqvist",
+    "providerNpi": "1389057245",
+    "icd10": "R53.83",
+    "orderCode": "85025",
+    "orderDate": "2026-03-13"
+  },
+  "expectedFlags": [],
+  "notes": "DOB blank; fax timestamp and order date nearby. Regression trap for 'always fill DOB'."
+}

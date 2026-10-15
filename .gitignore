@@ -147,3 +147,12 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# order-intake scaffold
+node_modules
+dist/
+.eval/
+.claude/worktrees/
+.claude/settings.local.json
+web/public/review.json
+.DS_Store

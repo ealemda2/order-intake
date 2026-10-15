@@ -1,0 +1,17 @@
+{
+  "docId": "11-referral-pt-bad-npi",
+  "orderType": "referral",
+  "fields": {
+    "patientName": "Yusuf Kaya",
+    "patientDob": "1990-01-27",
+    "memberId": "CIG-8890211",
+    "providerName": "Daniel Okafor",
+    "providerNpi": "1548720363",
+    "icd10": "M25.561",
+    "orderCode": null,
+    "orderDate": "2026-03-08"
+  },
+  "expectedFlags": [
+    "providerNpi"
+  ]
+}

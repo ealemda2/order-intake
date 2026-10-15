@@ -1,0 +1,115 @@
+name: ci
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  guardrails:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: needs-human blocks merge
+        if: contains(github.event.pull_request.labels.*.name, 'needs-human')
+        run: |
+          echo "::error::This PR is escalated (needs-human). A human must review and remove the label."
+          exit 1
+      - name: grader and baseline changes need a human label
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'baseline-approved') }}
+        run: |
+          changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")
+          echo "$changed"
+          if echo "$changed" | grep -E '^evals/(baseline\.json|gates\.json|metrics\.ts|cases\.ts|datasets/)'; then
+            echo "::error::This PR changes the grader, golden set or baseline. Add the 'baseline-approved' label after human review."
+            exit 1
+          fi
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build:web
+
+  eval:
+    needs: check
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+      LANGSMITH_TRACING: ${{ secrets.LANGSMITH_API_KEY != '' && 'true' || 'false' }}
+      LANGSMITH_PROJECT: order-intake-ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: pnpm eval
+        id: eval
+        run: |
+          set +e
+          pnpm -s eval > /dev/null
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat .eval/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: post eval evidence on the PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --edit-last --create-if-none --body-file .eval/report.md \
+            || gh pr comment ${{ github.event.pull_request.number }} --body-file .eval/report.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eval
+          path: .eval/
+          include-hidden-files: true
+      - name: gate
+        if: steps.eval.outputs.code != '0'
+        run: |
+          echo "::error::An eval gate failed. See the eval evidence comment. The agent should escalate; a human decides."
+          exit 1
+
+  deploy-dev:
+    # Dev = the review UI on GitHub Pages, built from main with the latest eval outputs.
+    # Enable with: repo Settings > Pages > Source: GitHub Actions, then `gh variable set PAGES_ENABLED --body true`.
+    if: github.event_name == 'push' && vars.PAGES_ENABLED == 'true'
+    needs: eval
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: dev
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with: { name: eval, path: .eval }
+      - run: cp .eval/outputs.json web/public/review.json && pnpm build:web
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: web/dist }
+      - id: deploy
+        uses: actions/deploy-pages@v4

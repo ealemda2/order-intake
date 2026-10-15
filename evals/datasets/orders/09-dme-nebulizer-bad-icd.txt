@@ -1,0 +1,17 @@
+BOSPHORUS FAMILY MEDICINE
+1450 Harbor View Rd, Suite 200  |  Tel (555) 010-4410  |  Fax (555) 010-4411
+
+DME ORDER / DETAILED WRITTEN ORDER                                   Priority: Routine
+
+Patient: Ilse Vermeulen
+DOB: 05/21/1963          Last office visit: 02/19/2026
+Insurance: on file          Member ID: BCX559201774
+
+Ordering provider: Tomas Lindqvist, NP     NPI: 1389057245
+
+Ordered:
+  E0570  Nebulizer with compressor
+Diagnosis: J4590.9  Asthma, unspecified
+
+Date of order: 03/06/2026
+Signature: Tomas Lindqvist, NP (electronically signed)

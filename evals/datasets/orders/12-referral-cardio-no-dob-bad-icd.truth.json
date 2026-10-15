@@ -1,0 +1,18 @@
+{
+  "docId": "12-referral-cardio-no-dob-bad-icd",
+  "orderType": "referral",
+  "fields": {
+    "patientName": "Elena Petrova",
+    "patientDob": null,
+    "memberId": "HUM-41120983",
+    "providerName": "Selin Aydin",
+    "providerNpi": "1928374655",
+    "icd10": "R0.79",
+    "orderCode": null,
+    "orderDate": "2026-03-12"
+  },
+  "expectedFlags": [
+    "icd10"
+  ],
+  "notes": "DOB blank (trap, no fax header but order date and last-visit date). ICD-10 malformed (meant R07.9)."
+}

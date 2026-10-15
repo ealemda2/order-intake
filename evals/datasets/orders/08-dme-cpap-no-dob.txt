@@ -1,0 +1,11 @@
+FAX  03/03/2026 11:05  FROM: 5550137700  TO: CENTRAL INTAKE  P.01/01
+
+NORTHGATE PULMONARY ASSOCIATES            DME ORDER / DETAILED WRITTEN ORDER
+-----------------------------------------------------------------------
+| PATIENT     | Samuel Osei                | DOB     |            |
+| MEMBER ID   | AET-60228471               | SEX     |            |
+| PROVIDER    | Priya Raman, MD            | NPI     | 1765432103 |
+| ORDER       | E0601 CPAP device
+| DX (ICD-10) | G47.33 Obstructive sleep apnea
+| DATE        | 03/02/2026                 | URGENCY | Routine    |
+-----------------------------------------------------------------------

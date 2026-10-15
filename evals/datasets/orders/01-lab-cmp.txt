@@ -1,0 +1,17 @@
+BOSPHORUS FAMILY MEDICINE
+1450 Harbor View Rd, Suite 200  |  Tel (555) 010-4410  |  Fax (555) 010-4411
+
+LABORATORY ORDER                                   Priority: Routine
+
+Patient: Mara Ellison
+DOB: 04/12/1961          Last office visit: 02/26/2026
+Insurance: on file          Member ID: BCX448812093
+
+Ordering provider: Selin Aydin, MD     NPI: 1928374655
+
+Ordered:
+  80053  Comprehensive metabolic panel
+Diagnosis: E11.9  Type 2 diabetes mellitus without complications
+
+Date of order: 03/13/2026
+Signature: Selin Aydin, MD (electronically signed)

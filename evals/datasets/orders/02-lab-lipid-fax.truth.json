@@ -1,0 +1,15 @@
+{
+  "docId": "02-lab-lipid-fax",
+  "orderType": "lab",
+  "fields": {
+    "patientName": "Jonah Reyes",
+    "patientDob": "1978-11-03",
+    "memberId": "AET-55102938",
+    "providerName": "Hannah Weiss",
+    "providerNpi": "1672940834",
+    "icd10": "I10",
+    "orderCode": "80061",
+    "orderDate": "2026-03-10"
+  },
+  "expectedFlags": []
+}

@@ -1,0 +1,15 @@
+{
+  "docId": "15-not-order-flu-reminder",
+  "orderType": "not_order",
+  "fields": {
+    "patientName": null,
+    "patientDob": null,
+    "memberId": null,
+    "providerName": null,
+    "providerNpi": null,
+    "icd10": null,
+    "orderCode": null,
+    "orderDate": null
+  },
+  "expectedFlags": []
+}

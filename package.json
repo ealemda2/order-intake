@@ -1,0 +1,32 @@
+{
+  "name": "order-intake",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit && pnpm -C web typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "eval": "tsx evals/run.ts",
+    "eval:accept": "tsx evals/accept.ts",
+    "eval:generate": "tsx evals/generate.ts",
+    "intake": "tsx src/cli.ts",
+    "web": "pnpm -C web dev",
+    "build:web": "pnpm -C web build"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
+    "langsmith": "^0.10.13",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/fhir": "^0.0.44",
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  }
+}

@@ -1,0 +1,11 @@
+FAX  03/04/2026 14:27  FROM: 5550137700  TO: CENTRAL INTAKE  P.01/01
+
+NORTHGATE PULMONARY ASSOCIATES            REFERRAL
+-----------------------------------------------------------------------
+| PATIENT     | Marcus Hale                | DOB     | 08/14/1982 |
+| MEMBER ID   | SELF-PAY                   | SEX     |            |
+| PROVIDER    | Priya Raman, MD            | NPI     | 1765432103 |
+| ORDER       | Referral to Sleep Medicine, evaluate for sleep-disordered breathing
+| DX (ICD-10) | R06.02 Shortness of breath
+| DATE        | 03/04/2026                 | URGENCY | Routine    |
+-----------------------------------------------------------------------
