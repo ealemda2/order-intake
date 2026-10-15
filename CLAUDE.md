@@ -19,6 +19,7 @@ The model drafts; deterministic checks flag; a human signs off. Vocabulary: @GLO
 - Tickets are GitHub issues. Branch `feat/<issue>-<slug>`, conventional commits, never commit to main.
 - Build test-first at agreed seams (`/tdd`). Unit tests never call a real model: inject the model client.
 - Before a PR: `pnpm typecheck && pnpm test`, then the `eval-check` skill. PR body follows the `pr` skill with eval evidence.
+- PR bodies open with `## Why`: 2–3 plain-language sentences on the user problem and outcome, no identifiers. Include the eval table only when `src/pipeline/` behaviour changes; otherwise one line saying so.
 
 ## Gotchas
 - `.env` holds API keys: never read or print it. Synthetic data only; no real PHI anywhere, including traces.
